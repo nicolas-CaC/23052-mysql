@@ -32,13 +32,22 @@ INSERT INTO datos VALUES (LOAD_FILE('c:/1.png'));
 CREATE TABLE datos (tipoblob blob);
 INSERT INTO datos VALUES (LOAD_FILE('c:\\1.txt'));
 
+CREATE TABLE datos(tipoenum enum('a','b','c') );
+INSERT INTO datos VALUES (2);
+INSERT INTO datos VALUES (1);
+INSERT INTO datos VALUES (3);
+
+CREATE TABLE datos (tiposet SET('a','b','c'));
+INSERT INTO datos values('a,c');
+INSERT INTO datos values('a,b');
+INSERT INTO datos values('a,d'); -- ERROR
 
 
 CREATE TABLE datos(
 	tipochar char,
 	tipovarchar varchar(100),
 	tipobinary BINARY,
-	tipovarbinary(65000),
+	tipovarbinary varbinary(65000),
 	tipotinyblob TINYBLOB,
 	tipotinytext TINYTEXT,
 	tipoblob BLOB,
@@ -47,6 +56,8 @@ CREATE TABLE datos(
 	tipomediumtext MEDIUMTEXT,
 	tipolongblob LONGBLOB,
 	tipolongtext LONGTEXT,
+	tipoenum enum('a','b','c'),
+	tiposet SET('a','b','c','x','y','z')
 );
 
 INSERT INTO datos values(
@@ -61,5 +72,7 @@ INSERT INTO datos values(
 	LOAD_FILE('c:\\1.png'),
 	'Hola como estan? Y mas',
 	LOAD_FILE('c:\\1.png'),
-	'Superlargo'	
+	'Superlargo',
+	1,
+	'c,x'
 );
